@@ -28,3 +28,11 @@ npm run dev
 npm run build
 ```
 # FoodApp
+
+
+# node -v
+v22.9.0
+
+# npm -v
+10.8.3
+上記使用環境
