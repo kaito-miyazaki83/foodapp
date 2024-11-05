@@ -5,8 +5,8 @@ schema:
   source: "./schema"
   datasource:
     postgresql:
-      database: "fdcdb"
+      database: "postgres"
       cloudSql:
-        instanceId: "FoodApp-fdc"
+        instanceId: "foodapp-sql"
       # schemaValidation: "COMPATIBLE"
 connectorDirs: ["./connector"]
