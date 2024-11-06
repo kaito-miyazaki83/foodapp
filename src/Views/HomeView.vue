@@ -18,20 +18,6 @@ const count = ref(0)
     <footer>
         <FooterComponent></FooterComponent>
     </footer>
-    <BaseLayout>
-    <template #header>
-      <HeaderComponent></HeaderComponent>
-    </template>
-
-    <template #default>
-      <p>A paragraph for the main content.</p>
-      <p>And another one.</p>
-    </template>
-
-    <template #footer>
-        <FooterComponent></FooterComponent>
-    </template>
-  </BaseLayout>
 </template>
 
 
