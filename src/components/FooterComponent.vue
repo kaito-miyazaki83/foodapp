@@ -12,6 +12,11 @@ defineProps({
 </template>
 
 <style scoped>
+.contents {
+    font-size: 30px;
+    margin: 50px 0 0 0;
+}
+
 
 footer .copyright {
     font-size: 11px;
