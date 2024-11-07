@@ -11,5 +11,12 @@
   "compileOnSave": true,
   "include": [
     "src"
-  ]
+  ],
+    "compilerOptions": {
+      // その他の設定
+    },
+    "include": [
+      "src/**/*.ts",
+      "index.js"  // ここに `index.js` を追加します
+    ]  
 }
