@@ -1,7 +1,6 @@
 <script setup>
 import HeaderComponent from '../components/HeaderComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
-
 import { ref } from 'vue'
 
 const count = ref(0)
@@ -26,7 +25,7 @@ const count = ref(0)
 
 <style scoped>
 body {
-    min-height: calc(100vh - 40px);
+    min-height: calc(150vh - 40px);
     position: relative;
     box-sizing: border-box;
 }
