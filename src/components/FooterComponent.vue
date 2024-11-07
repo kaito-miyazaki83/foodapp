@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <div class="copyright">©2022 Vue Firebase Example, Ltd. All rights reserved.</div>
+        <div class="copyright">©2024 Vue Firebase Example, Ltd. All rights reserved.</div>
     </footer>
 </template>
 
