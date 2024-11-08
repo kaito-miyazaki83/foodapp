@@ -1,7 +1,7 @@
 <template>
     <div>
       <header>
-        <div class="title">Vue Firebase Example</div>
+        <div class="title">Food List App</div>
       </header>
       <main>
         <div class="container">
