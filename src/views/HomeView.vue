@@ -4,7 +4,7 @@
         <HeaderComponent></HeaderComponent>
 
         <main>
-            <p class="contents">ここがHomeです</p>
+            
         </main>
 
         <FooterComponent></FooterComponent>
