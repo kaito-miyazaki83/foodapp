@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from './views/HomeView.vue';
 import LoginView from './views/LoginView.vue';
 import FoodView from './views/FoodView.vue';
+import MealView from './views/MealView.vue';
+import RecipeView from './views/RecipeView.vue'; 
+import RestaurantView from './views/RestaurantView.vue'
 
 // 画面遷移前にログイン済みかを判定するメソッドに必要なFirebaseのメソッド
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import MealView from './views/MealView.vue';
 
 const routes = [
     {

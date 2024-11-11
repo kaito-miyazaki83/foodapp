@@ -2,7 +2,7 @@
   <div class="header_container">
     <div class="header_logo">
       <div class="img_container">
-        <img src="../assets/logo.png" alt="logo">
+        <img src="../../assets/logo.png" alt="Logo">
       </div>
       <p>Vue Firebase Example</p>
     </div>
@@ -19,7 +19,7 @@
 
 <script>
 import { signOut, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase_settings/index.js'; // Ensure correct import
+import { auth } from '../../firebase_settings/index.js'; 
 
 export default {
   name: 'HeaderComponent',
