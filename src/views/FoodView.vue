@@ -37,9 +37,9 @@
   </template>
   
   <script>
-  import HeaderComponent from '../components/HeaderComponent.vue';
-  import FooterComponent from '../components/FooterComponent.vue';
-  import LoadingAnimationComponent from '../components/LoadingAnimationComponent.vue';
+  import HeaderComponent from '../components/common/HeaderComponent.vue';
+  import FooterComponent from '../components/common/FooterComponent.vue';
+  import LoadingAnimationComponent from '../components/common/LoadingAnimationComponent.vue';
   import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
   import { onAuthStateChanged } from "firebase/auth";
   import { auth, db } from '../firebase_settings/index.js';  // Ensure correct import

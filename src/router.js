@@ -5,6 +5,7 @@ import FoodView from './views/FoodView.vue';
 
 // 画面遷移前にログイン済みかを判定するメソッドに必要なFirebaseのメソッド
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import MealView from './views/MealView.vue';
 
 const routes = [
     {
@@ -25,6 +26,24 @@ const routes = [
         component: FoodView,
         meta: { title: 'Food', requiresAuth: true}
     },
+    {
+        path: '/meal',
+        name: 'meal',
+        component: MealView,
+        meta: { title: 'meal', requiresAuth: true}
+    },
+    {
+        path: '/recipe',
+        name: 'recipe',
+        component: RecipeView,
+        meta: { title: 'recipe', requiresAuth: true}
+    },
+    {
+        path: '/restaurant',
+        name: 'restaurant',
+        component: RestaurantView,
+        meta: { title: 'restaurant', requiresAuth: true}
+    }
 ];
 
 const router = createRouter({

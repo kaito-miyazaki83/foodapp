@@ -45,8 +45,8 @@
   </template>
   
   <script>
-  import FooterComponent from '../components/FooterComponent.vue'
-  import LoadingAnimationComponent from '../components/LoadingAnimationComponent.vue'
+  import FooterComponent from '../components/common/FooterComponent.vue'
+  import LoadingAnimationComponent from '../components/common/LoadingAnimationComponent.vue'
   import { signInWithEmailAndPassword } from "firebase/auth";
   import { auth } from '../firebase_settings/index.js';
 
