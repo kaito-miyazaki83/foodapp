@@ -4,7 +4,7 @@
       <div class="img_container">
         <img src="../../assets/logo.png" alt="Logo">
       </div>
-      <p>Vue Firebase Example</p>
+      <p>FoodApp</p>
     </div>
     <div>
       <div class="login_name blue">&nbsp;{{ login_name }}</div>
@@ -27,7 +27,7 @@ export default {
     return {
       login_name: "",
     };
-  },
+  }, 
   methods: {
     confirmLogout() {
       const result = confirm('ログアウトしますか？');
