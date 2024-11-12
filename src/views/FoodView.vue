@@ -9,8 +9,8 @@
               <p>好きな食べ物</p>
             </div>
             <div class="container_right">
-              <p>{{ food }}&nbsp;</p>
-              <p>{{ timestamp }}&nbsp;</p>
+              <p>{{ food }}</p>
+              <p>{{ timestamp }}</p>
             </div>
           </div>
           <div class="row_container">
