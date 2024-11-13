@@ -11,6 +11,8 @@
       <div class="header_menu">
         <div class="menu_item" v-on:click="goToHome">Home</div>
         <div class="menu_item" v-on:click="goToFood">Food</div>
+        <div class="menu_item" v-on:click="goToRecipe">レシピを見る</div>
+        <div class="menu_item" v-on:click="goToRestaurant">レストランを探す</div>
         <div class="menu_item" v-on:click="confirmLogout">Logout</div>
       </div>
     </div>
@@ -66,6 +68,22 @@ export default {
       const nowRoute = this.$route.path;
       if (nowRoute != '/food') {
         this.$router.push('/food');
+      } else {
+        window.location.reload();
+      }
+    },
+    goToRecipe() {
+      const nowRoute = this.$route.path;
+      if (nowRoute != '/recipe') {
+        this.$router.push('/recipe');
+      } else {
+        window.location.reload();
+      }
+    },
+    goToRestaurant() {
+      const nowRoute = this.$route.path;
+      if (nowRoute != '/restaurant') {
+        this.$router.push('/restaurant');
       } else {
         window.location.reload();
       }

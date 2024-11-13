@@ -4,8 +4,7 @@
         <HeaderComponent></HeaderComponent>
 
         <main>
-            <h1>HOT PEPPPER</h1>
-            <HotpeperComponent></HotpeperComponent>
+            
         </main>
 
         <FooterComponent></FooterComponent>
@@ -15,14 +14,13 @@
 <script>
 import HeaderComponent from '../components/common/HeaderComponent.vue'
 import FooterComponent from '../components/common/FooterComponent.vue'
-import HotpeperComponent from '../components/recipes/HotpeperComponent.vue'
+
 
 export default {
   name: 'HomeView',
   components: {
     HeaderComponent,
     FooterComponent,
-    HotpeperComponent
   },
   data() {
     return {};
