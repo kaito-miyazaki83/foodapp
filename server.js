@@ -1,33 +1,33 @@
-const express = require('express');
-const axios = require('axios');
-const app = express();
-const port = 3001; // ポート番号を指定
-const apiUrl = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
+const API_KEY = 'a99653fd49e99132';
+const KEYWORD = '寿司 東京'; // より具体的なキーワードに変更
+const API_URL = 'http://webservice.recruit.co.jp/hotpepper/shop/v1/';
 
+const URL = `${API_URL}?key=${API_KEY}&keyword=${encodeURIComponent(KEYWORD)}&format=json`;
 
-// メインルートの設定
-app.get('/', (req, res) => {
-  res.send('Welcome to the Hot Pepper API Relay Server!');
-});
-
-app.get('/api/searchShops', (req, res) => {
-  const { shopName } = req.query;
-  axios.get(apiUrl, {
-    params: {
-      key: 'a99653fd49e99132',
-      keyword: shopName,
-      format: 'json'
+async function main() {
+  try {
+    const res = await fetch(URL);
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
     }
-  })
-  .then(response => {
-    res.json(response.data.results.shop);
-  })
-  .catch(error => {
-    res.status(error.response ? error.response.status : 500).send(error.message);
-  });
-});
+    const data = await res.text();
+    const obj = JSON.parse(data);
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+    if (obj.results.shop && obj.results.shop.length > 0) {
+      const topShops = obj.results.shop.slice(0, 10); // 上位10件のみ取得
 
+      topShops.forEach((shop, index) => {
+        console.log(`店名: ${shop.name}`);
+        console.log(`住所: ${shop.address}`);
+        console.log(`URL: ${shop.urls.pc}`);
+        console.log('-----------------------------------');
+      });
+    } else {
+      console.log('No shops found for the given keyword.');
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+main();
