@@ -4,8 +4,8 @@
       <HeaderComponent></HeaderComponent>
 
       <main>
-          <h1>HOT PEPPPER</h1>
-          <HotpeperComponent></HotpeperComponent>
+          <h1>楽天レシピ</h1>
+          <RalutenrecipeComponent></RalutenrecipeComponent>
       </main>
 
       <FooterComponent></FooterComponent>
@@ -15,14 +15,14 @@
 <script>
 import HeaderComponent from '../components/common/HeaderComponent.vue'
 import FooterComponent from '../components/common/FooterComponent.vue'
-import HotpeperComponent from '../components/restaurants/HotpeperComponent.vue'
+import RalutenrecipeComponent from '../components/recipes/RakutenrecipeComponent.vue'
 
 export default {
 name: 'HomeView',
 components: {
   HeaderComponent,
   FooterComponent,
-  HotpeperComponent
+  RalutenrecipeComponent
 },
 data() {
   return {};

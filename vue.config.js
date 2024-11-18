@@ -9,6 +9,12 @@ module.exports = defineConfig({
         changeOrigin: true,
         pathRewrite: { '^/api': '' },
       },
+      '/rakuten-api': {
+        target: 'https://app.rakuten.co.jp',
+        changeOrigin: true,
+        pathRewrite: { '^/rakuten-api': '' },
+      },
     },
   },
 })
+

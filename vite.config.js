@@ -19,7 +19,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+      '/rakuten-api': {
+        target: 'https://app.rakuten.co.jp',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/rakuten-api/, ''),
+      },
     },
   },
 });
-

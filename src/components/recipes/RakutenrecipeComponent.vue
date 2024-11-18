@@ -1,13 +1,11 @@
 <template>
     <div>
-      <input v-model="shopName" placeholder="お店の名前" />
-      <button @click="searchShops">検索</button>
-      <ul class="shop-list">
-        <li v-for="shop in shops" :key="shop.id" class="shop-item">
-          <img v-if="shop.photo && shop.photo.pc && shop.photo.pc.l" :src="shop.photo.pc.l" alt="shop image" class="shop-image" />
-          <div class="shop-info">
-            <a :href="shop.urls.pc" target="_blank" class="shop-name">{{ shop.name }}</a>
-            <p class="shop-address">{{ shop.address }}</p>
+      <ul class="recipe-list">
+        <li v-for="recipe in recipes" :key="recipe.recipeId" class="recipe-item">
+          <img v-if="recipe.foodImageUrl" :src="recipe.foodImageUrl" alt="recipe image" class="recipe-image" />
+          <div class="recipe-info">
+            <a :href="recipe.recipeUrl" target="_blank" class="recipe-name">{{ recipe.recipeTitle }}</a>
+            <p class="recipe-description">{{ recipe.recipeDescription }}</p>
           </div>
         </li>
       </ul>
@@ -16,27 +14,30 @@
   </template>
   
   <script>
-  import searchShopsAPI from '@/api/searchShops';
+  import searchRecipesAPI from '@/api/searchRecipes';
   
   export default {
     data() {
       return {
-        shopName: '',
-        shops: [],
+        selectedCategory: 'large', // カテゴリーをlargeに固定
+        recipes: [],
         errorMessage: '',
       };
     },
     methods: {
-      async searchShops() {
+      async searchRecipes() {
         try {
-          const shops = await searchShopsAPI.searchShops(this.shopName);
-          this.shops = shops;
+          const recipes = await searchRecipesAPI(this.selectedCategory);
+          this.recipes = recipes;
           this.errorMessage = '';
         } catch (error) {
-          this.shops = [];
-          this.errorMessage = error.message;
+          this.recipes = [];
+          this.errorMessage = 'レシピの取得中にエラーが発生しました。';
         }
       }
+    },
+    mounted() {
+      this.searchRecipes();
     }
   };
   </script>
@@ -45,36 +46,36 @@
   .error {
     color: red;
   }
-  .shop-list {
+  .recipe-list {
     list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
-  .shop-item {
+  .recipe-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 200px;
   }
-  .shop-image {
+  .recipe-image {
     width: 180px;
     height: 180px;
     margin-bottom: 10px;
   }
-  .shop-info {
+  .recipe-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-  .shop-name {
+  .recipe-name {
     font-size: 1.2em;
     margin-bottom: 5px;
   }
-  .shop-address {
+  .recipe-description {
     color: #555;
   }
   </style>
-  
+
