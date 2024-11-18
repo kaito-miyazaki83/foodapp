@@ -1,3 +1,4 @@
+<!-- hotpeper接続 -->
 <template>
   <div>
     <input v-model="shopName" placeholder="お店の名前" />

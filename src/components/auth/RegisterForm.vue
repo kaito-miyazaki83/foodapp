@@ -1,3 +1,4 @@
+<!-- 新規登録　後ほどログイン画面に接続予定 -->
 <template>
     <div class="register-form">
       <h2>新規登録</h2>
@@ -52,4 +53,6 @@
     border-radius: 10px;
   }
   </style>
+  
+<!-- 新規登録 -->
   
