@@ -4,7 +4,9 @@
         <HeaderComponent></HeaderComponent>
 
         <main>
-            
+            <div class="recipe"></div>
+            <div class="restaurant"></div>
+            <div class="sideber"></div>
         </main>
 
         <FooterComponent></FooterComponent>
