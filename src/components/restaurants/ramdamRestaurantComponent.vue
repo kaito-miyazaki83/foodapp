@@ -1,9 +1,6 @@
 <template>
     <div>
       <h1>近くのレストラン</h1>
-      <button @click="getLocation">現在地を取得してレストランを検索</button>
-      <input v-model="locationQuery" placeholder="住所や駅名を入力" />
-      <button @click="fetchRestaurantsByQuery">住所や駅名で検索</button>
       <ul class="restaurant-list">
         <li v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-item">
           <img v-if="restaurant.photo.pc.l" :src="restaurant.photo.pc.l" alt="restaurant image" class="restaurant-image" />
@@ -21,18 +18,16 @@
   
   <script>
   import searchShops from '@/api/randamShops.js';
-  import searchShopsByQuery from '@/api/searchShopsByQuery.js';
   
   export default {
     data() {
       return {
         restaurants: [],
-        locationQuery: '',
         errorMessage: '',
       };
     },
     methods: {
-      async getLocation() {
+      async getLocationAndFetchRestaurants() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -73,38 +68,11 @@
           this.restaurants = [];
           this.errorMessage = 'レストランの取得中にエラーが発生しました。';
         }
-      },
-      async fetchRestaurantsByQuery() {
-        try {
-          const locationQuery = this.locationQuery;
-          const restaurants = await searchShopsByQuery(locationQuery);
-          console.log('Fetched Restaurants:', restaurants);
-          this.restaurants = restaurants;
-          this.errorMessage = '';
-        } catch (error) {
-          console.error('Error fetching restaurants:', error);
-          this.restaurants = [];
-          this.errorMessage = 'レストランの取得中にエラーが発生しました。';
-        }
       }
-    },
-    created() {
-      console.log('Component Created');
     },
     mounted() {
       console.log('Component Mounted');
-    },
-    updated() {
-      console.log('Component Updated');
-      console.log('Current Restaurants:', this.restaurants);
-    },
-    unmounted() {
-      console.log('Component Unmounted');
-    },
-    watch: {
-      restaurants(newRestaurants) {
-        console.log('Restaurants Changed:', newRestaurants);
-      }
+      this.getLocationAndFetchRestaurants(); // コンポーネントのマウント時に自動的に位置情報を取得し、レストランを検索
     }
   };
   </script>

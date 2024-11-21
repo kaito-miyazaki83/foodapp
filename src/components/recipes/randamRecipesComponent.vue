@@ -1,4 +1,5 @@
 <template>
+    <h1>おすすめレシピ</h1>
     <div class="category-container">
       <div v-for="category in categories" :key="category.categoryId" class="category-item">
         <a class="category-link">{{ category.categoryName }}</a>
