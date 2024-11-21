@@ -10,6 +10,7 @@
       <div class="login_name blue">&nbsp;{{ login_name }}</div>
       <div class="header_menu">
         <div class="menu_item" v-on:click="goToHome">Home</div>
+        <div class="menu_item" v-on:click="goToMeal">食事を記録する</div>
         <div class="menu_item" v-on:click="goToFood">Food</div>
         <div class="menu_item" v-on:click="goToRecipe">レシピを見る</div>
         <div class="menu_item" v-on:click="goToRestaurant">レストランを探す</div>
@@ -60,6 +61,14 @@ export default {
       const nowRoute = this.$route.path;
       if (nowRoute != '/') {
         this.$router.push('/');
+      } else {
+        window.location.reload();
+      }
+    },
+    goToMeal() {
+      const nowRoute = this.$route.path;
+      if (nowRoute != '/meal') {
+        this.$router.push('/meal');
       } else {
         window.location.reload();
       }
