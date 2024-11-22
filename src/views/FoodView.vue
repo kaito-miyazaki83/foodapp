@@ -6,11 +6,10 @@
         <div class="all_container">
           <div class="row_container">
             <div class="container_left">
-              <p>好きな食べ物</p>
+              <p>気になる料理</p>
             </div>
             <div class="container_right">
               <p>{{ food }}</p>
-              <p>{{ timestamp }}</p>
             </div>
           </div>
           <div class="row_container">
@@ -22,7 +21,7 @@
           <div class="row_container">
             <div class="container_left"></div>
             <div class="container_right">
-              <button class="btn_standard" v-on:click="registerFood">好きな食べ物を登録</button>
+              <button class="btn_standard" v-on:click="registerFood">登録</button>
               <p class="red">{{ errorMessage }}&nbsp;</p>
               <!-- ローディングアニメーション -->
               <div class="loading_animation" v-if="isLoading">

@@ -8,7 +8,7 @@
             <p>食べたご飯</p>
           </div>
           <div class="container_right">
-            <MealListComponent :meals="meals" />
+            <MealListComponent ref="mealListComponent" />
           </div>
         </div>
         <div class="row_container">
@@ -38,9 +38,9 @@ import HeaderComponent from '../components/common/HeaderComponent.vue';
 import FooterComponent from '../components/common/FooterComponent.vue';
 import LoadingAnimationComponent from '../components/common/LoadingAnimationComponent.vue';
 import MealListComponent from '../components/meals/MealListComponent.vue';
-import { doc, getDoc, updateDoc, arrayUnion, serverTimestamp } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { auth, db } from '../firebase_settings/index.js';
+import { onAuthStateChanged } from "firebase/auth";
 
 export default {
   name: 'MealView',
@@ -54,31 +54,10 @@ export default {
     return {
       errorMessage: "",
       isLoading: false,
-      meals: [],
-      uid: "",
       inputFood: "",
     };
   },
   methods: {
-    async getMeals() {
-      this.meals = [];
-      try {
-        const docRef = doc(db, "userData", this.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          this.meals = docSnap.get('meals') || [];
-          this.meals = this.meals.map(meal => ({
-            food: meal.food,
-            timestamp: meal.timestamp.toDate().toLocaleString(),
-          }));
-        } else {
-          this.meals = [{ food: "データ未登録", timestamp: "" }];
-        }
-      } catch (error) {
-        this.meals = [{ food: "データ取得に失敗しました", timestamp: "" }];
-        console.log(error);
-      }
-    },
     async registerFood() {
       if (this.isLoading) { return; }
       const mFood = this.inputFood.trim();
@@ -87,31 +66,32 @@ export default {
         return;
       }
       this.errorMessage = "";
-      const result = confirm('食べたご飯を登録しますか？');
-      if (!result) { return; }
       this.isLoading = true;
-      const docRef = doc(db, "userData", this.uid);
+      const user = auth.currentUser;
+      const docRef = doc(db, "userData", user.uid);
       try {
+        // タイムスタンプを先に取得
+        const timestamp = Timestamp.now();
         const newMeal = {
           food: mFood,
-          timestamp: serverTimestamp(),
+          timestamp: timestamp,
         };
         await updateDoc(docRef, {
           meals: arrayUnion(newMeal)
         });
+        // MealListComponent 内でデータを再取得して更新
+        this.$refs.mealListComponent.fetchMeals();
       } catch (error) {
         console.log(error);
         alert("エラーが発生しました");
       }
-      this.getMeals();
       this.isLoading = false;
     }
   },
-  mounted() {
+  async mounted() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.uid = user.uid;
-        this.getMeals();
       } else {
         this.uid = "";
       }

@@ -11,7 +11,7 @@
       <div class="header_menu">
         <div class="menu_item" v-on:click="goToHome">Home</div>
         <div class="menu_item" v-on:click="goToMeal">食事を記録する</div>
-        <div class="menu_item" v-on:click="goToFood">Food</div>
+        <div class="menu_item" v-on:click="goToFood">ごはんメモ</div>
         <div class="menu_item" v-on:click="goToRecipe">レシピを見る</div>
         <div class="menu_item" v-on:click="goToRestaurant">レストランを探す</div>
         <div class="menu_item" v-on:click="confirmLogout">Logout</div>
