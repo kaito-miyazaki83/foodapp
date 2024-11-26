@@ -2,15 +2,18 @@
   <div class="register-form">
     <h2>新規登録</h2>
     <form @submit.prevent="register">
-      <div>
-        <label for="email">Email:</label>
+      <div class="container">
+        <p>ID(メールアドレス)</p>
         <input type="email" v-model="email" required>
       </div>
-      <div>
-        <label for="password">Password:</label>
+      <div class="container">
+        <p>パスワード</p>
         <input type="password" v-model="password" required>
       </div>
-      <button type="submit">登録</button>
+      <div class="message">
+        <p class="red">{{ errorMessage }}&nbsp;</p>
+      </div>
+      <button class="btn_standard" type="submit">登録</button>
     </form>
     <p v-if="error">{{ error }}</p>
   </div>
@@ -44,11 +47,21 @@ export default {
 </script>
 
 <style scoped>
-.register-form {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
+  .container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 0;
+  }
+  .container input {
+    width: 400px;
+  }
+  .container p {
+    width: 200px;
+    text-align: left;
+    margin-top: 8px;
+  }
+  .loading_animation_container {
+    height: 15px;
+    margin-top: 10px;
+  }
 </style>
