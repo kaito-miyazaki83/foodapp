@@ -1,4 +1,5 @@
 import axios from 'axios';
+// eslint-disable-next-line no-unused-vars
 import { applicationId, apiKey } from './config';
 
 async function fetchCategories() {
