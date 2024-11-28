@@ -2,6 +2,7 @@
 .DS_Store
 node_modules
 /dist
+/functions
 
 # Local env files
 .env.local
@@ -24,4 +25,5 @@ pnpm-debug.log*
 
 # Custom additions
 /src/firebase_settings/index.js
+/src/api/config.js
 
