@@ -6,15 +6,20 @@
       </div>
       <p>FoodApp</p>
     </div>
-    <div>
+    <div class="hamburger_menu" @click="toggleMenu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="nav_links" :class="{ 'open': menuOpen }">
       <div class="login_name blue">&nbsp;{{ login_name }}</div>
       <div class="header_menu">
-        <div class="menu_item" v-on:click="goToHome">Home</div>
-        <div class="menu_item" v-on:click="goToMeal">食事を記録する</div>
-        <div class="menu_item" v-on:click="goToFood">ごはんメモ</div>
-        <div class="menu_item" v-on:click="goToRecipe">レシピを見る</div>
-        <div class="menu_item" v-on:click="goToRestaurant">レストランを探す</div>
-        <div class="menu_item" v-on:click="confirmLogout">Logout</div>
+        <div class="menu_item" @click="goToHome">Home</div>
+        <div class="menu_item" @click="goToMeal">食事を記録する</div>
+        <div class="menu_item" @click="goToFood">ごはんメモ</div>
+        <div class="menu_item" @click="goToRecipe">レシピを見る</div>
+        <div class="menu_item" @click="goToRestaurant">レストランを探す</div>
+        <div class="menu_item" @click="confirmLogout">Logout</div>
       </div>
     </div>
   </div>
@@ -22,16 +27,20 @@
 
 <script>
 import { signOut, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase_settings/index.js'; 
+import { auth } from '../../firebase_settings/index.js';
 
 export default {
   name: 'HeaderComponent',
   data() {
     return {
       login_name: "",
+      menuOpen: false
     };
-  }, 
+  },
   methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    },
     confirmLogout() {
       const result = confirm('ログアウトしますか？');
       if (!result) { return; }
@@ -113,6 +122,7 @@ export default {
     height: 60px;
     width: auto;
     background: #efefef;
+    align-items: center;
 }
 .header_logo {
     display: flex;
@@ -148,4 +158,61 @@ img {
     color: #2296f3;
     border-bottom: solid 3px #2296f3;
 }
+
+.hamburger_menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger_menu .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.nav_links {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav_links.open {
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+}
+
+@media (max-width: 980px) {
+    .header_menu {
+        display: none;
+    }
+    .hamburger_menu {
+        display: flex;
+    }
+    .nav_links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: #efefef;
+        width: 100%;
+        height: calc(100vh - 60px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav_links.open {
+        display: flex;
+    }
+    .menu_item {
+        margin: 10px 0;
+        font-size: 20px;
+    }
+}
+
 </style>
